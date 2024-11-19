@@ -3,12 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entidad texto</title>
+    <title>TEXTO EN A-FRAME</title>
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 </head>
 <body>
     <a-scene>
-        <a-entity text="value: hola texto; color: black; width: 1; wrapCount:5" position="0.5 1.5 -0.5"></a-entity>
+        <a-sky color="violet"></a-sky>
+        <a-entity
+        text="value: Ñ áaaaaaaaaaaaaaaaáaaaaaaaa\n alsakdkkfdnknkffk\t dfdjfbfjsfjsejkse;
+        font: recursos/customdos/custom-msdf.json;
+        fontImage: recursos/customdos/custom.png;
+        negate:false;
+        color:black;
+        letterSpacing:4;"
+        sacle="2 2 1"
+        position="0.5 2 -1.5">
+        </a-entity>
     </a-scene>
 </body>
 </html>
