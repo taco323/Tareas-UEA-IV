@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivo GLTF </title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+          <a-asset-item id="flower" src="recursos/modelos/flower/scene.gltf"></a-asset-item>
+        </a-assets>
+
+        <a-gltf-model src="#flower"></a-gltf-model>
+      
+        <a-gltf-model src="recursos/modelos/flower/scene.gltf"></a-gltf-model>
+      </a-scene>
+</body>
+</html>
