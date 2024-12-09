@@ -2,8 +2,16 @@
 # Guillermo
 ## Estética y prácticas del arte digital contemporáneo
 ### Arte y Comunicación Digitales
-Hola!!! 
-bienvenido a mi repositorioste repositorio contiene los trabajos elaborados en la unidad 3. El software que utilizamos es Visual Stuidio Code y la biblioteca  **Aframe**
+Bienvenido a mi repositorio!!
+--------
+¿Qué tal? aquí los encontrarás los trabajos que he elaborado a lo largo de la unidad 3. El software que utilicé para llevar a cabo mis proyectos es Visual   
+Stuidio Code y la biblioteca  *Aframe*  
+  
+Los trabajos que he realizado en su mayoría consisten en jugar con modelos 3d y con el fin de practicar para llevar a cabo mi proyecto final el cual  
+es una galeria virtual. Desde poder visualizar figuras geometricas, crear una pagina web dónde hablo de topicos que me gustan entre muchos otros que encontrarás  
+aquí.
+  
 Vinculo ns de las tecnologias:  
 [Aframe](https://aframe.io/)  
-La clase  5 hicimos un ejercico con entidades en la arquitectura **ECS** de Aframe
+
+[visual studio code](https://code.visualstudio.com/)
