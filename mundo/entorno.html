@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENTORNO</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+</head>
+
+</head>
+<body>
+    <a-scene>
+        <a-entity geometry="primitive: cylinder" position="0 0 -7" material="color:wihte"></a-entity>
+        <a-entity geometry="primitive: box" material="color: red" position="0 2 -3"></a-entity>
+        <a-entity environment="preset: japan; dressingAmount: 30; ground:spikes; seed"></a-entity>
+        <a-text
+        value="holaaaa tonotossss";
+        font="recursos/abc-msdf/abc-msdf.json";
+        fontImage="recursos/abc-msdf/abc.png";
+        negate="false";
+        color="black";
+        letterSpacing="4";
+        scale="40 40 40"
+        position="0.5 2 -1.5">
+        </a-text>
+    </a-scene>
+</body>
+</html>
