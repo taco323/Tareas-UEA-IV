@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video</title>
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene background="color: orange">
+        <!-- Activos de la escena -->
+        <a-assets>
+            <video id="700" src="recursos/700.mp4" muted autoplay loop></video>
+        </a-assets>
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Prueba de Video</title>
+            <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+            <script>
+                
+                AFRAME.registerComponent('play-pause', {
+                    init: function () {
+                        var myVideo = document.querySelector('#video1');
+                        var videoControls = document.querySelector('#videoControls'); 
+        
+                        
+                        this.el.addEventListener('click', function () {
+                            if (myVideo.paused) {
+                                myVideo.play(); 
+                                videoControls.setAttribute('src', '#pause'); 
+                            } else {
+                                myVideo.pause(); 
+                                videoControls.setAttribute('src', '#play'); 
+                            }
+                        });
+                    }
+                });
+            </script>
+        </head>
+        <body>
+            <a-scene>
+               
+                <a-assets>
+                    <video id="700" src="recursos/700.mp4" loop="true"></video>
+                    <img id="play" src="recursos/play.jpg">
+                    <img id="pause" src="recursos/pausa.jpg">
+                </a-assets>
+        
+                
+                <a-video src="#video1" autoplay="true" loop="true" width="16" height="9" position="0 2 -5"></a-video>
+        
+                
+                <a-image id="videoControls" src="#play" position="0 1.5 -4" scale="1 1 1" play-pause></a-image>
+            </a-scene>
+        </body>
+        </html>
+        <!-- Elemento de video en la escena -->
+        <a-video 
+            src="#700" 
+            width="8" 
+            height="5" 
+            position="3 5 -5" 
+            autoplay 
+            loop 
+            muted>
+        </a-video>
+    </a-scene>
+</body>
+</html>

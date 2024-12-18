@@ -13,75 +13,133 @@
 
 </head>
 <body>
-    <a-scene background="color:white" physics gravity="-9.81"> 
+    <a-scene background="color:white" physics gravity="-9.80"> 
 
-        <!--camara (prueba)-->
-        <a-entity id="rig" movement-controls position="0 1.6 0" >
-            <a-entity id="camera" camera position="0 0 0" look-controls="pointerLockEnabled: true"></a-entity>
+        <a-assets>
+            <a-assets-item id="navmesh" src="assets/modelos3D/malla1.gb"> </a-assets-item>
+        </a-assets> 
+        
+        <a-entity environment="preset: forest; dressingAmount: 1; groundYScale:0.5; lighting: distante; shadow:true; shadowSize:5; lightIntensity: 0 ;lightColor: #feeded; "></a-entity>
+        <a-plane  src="assets/imagenes/alfombra2.jpg" position="0 0.011 -26.568" rotation="-90 0 0" width="8" height="8" color="white"></a-plane> <!--piso-->
+
+        <!-- Player. -->
+        <a-entity id="rig" movement-controls="constrainToNavMesh: true; controls: checkpoint, gamepad, trackpad, keyboard, nipple;" position="0 0 0">
+            <a-entity camera
+            position="0 1.8 0"
+             look-controls="pointerLockEnabled: true">
+            <a-cursor></a-cursor>
         </a-entity>
-        <a-cursor></a-cursor>
-        
-        <a-entity environment="preset: forest; dressingAmount: 2;"></a-entity>
-        <a-plane  src="assets/imagenes/alfombra2.jpg" position="0 0.011 0" rotation="-90 0 0" width="8" height="8" color="white"></a-plane> <!--piso-->
+        </a-entity>
 
-        <!--techo universal-->
-        <a-entity geometry="primitive: box; width: 43; height: 43; depth:0.15;" position=" 0 6 0" rotation="-90 0 0" material="color:gray" static-body></a-entity>
-        
-        <a-entity geometry="primitive: box; width:8 ; height:8; depth: 0.15;" position="4 1 0" rotation="0 -90 0" material="color:gray" static-body> </a-entity> <!--pared lateral de lobby 1 (derecha)-->
-        <a-entity geometry="primitive: box; width:8 ; height:8; depth: 0.15;" position="-4 1 0" rotation="0 -90 0" material="color:gray" static-body> </a-entity> <!--pared lateral de lobby 2 (izquierda)-->
-        <a-entity geometry="primitive: box; width:8 ; height:8; depth: 0.15;" position="0 1 4" rotation="0 -180 0" material="color:gray" static-body> </a-entity> <!--pared trasera de lobby 2 (atras)-->
-        <a-entity geometry="primitive: box; width:3 ; height:8; depth: 0.15;" position="-2.5 1 -4" rotation="0 -180 0" material="color:gray" static-body> </a-entity> <!--puerta 1 (izq)-->
-        <a-entity geometry="primitive: box; width:3 ; height:8; depth: 0.15;" position="2.5 1 -4" rotation="0 -180 0" material="color:gray" static-body> </a-entity> <!--puerta 2 (der)-->
-        <a-entity geometry="primitive: box; width:3 ; height:2.5; depth: 0.15;"position="0 3.75 -4" rotation="0 -180 0" material="color:gray" static-body> </a-entity> <!--puerta 3 (enmedio)-->
-        <a-triangle rotation="-90 0 0" position="0 0.011 -5" color="yellow"></a-triangle>
+        <a-entity nav-mesh
+            normal-material
+            visible="true"
+            position="0 0 0"
+            gltf-model="#navmesh">
+        </a-entity>
 
-        <!--cuarto 1-->
-        <a-entity geometry="primitive: box; width:22 ; height:12; depth: 0.15;" position="0 0.011 -21.5"  material="color:gray" static-body> </a-entity> <!--pared de cuarto 1 (trasera)-->
-        <a-entity geometry="primitive : box; width: 12; height: 12; depth: 0.15;" position="-7.9 0.011 -16.2" rotation="0 -60 0" material="color:gray" static-body> </a-entity> <!--parede lateral izq-->
-        <a-entity geometry="primitive: box; width:12 ; height:12; depth:0.15;" position="7.9 0.011 -16.2" rotation="0 60 0" material="color:gray" static-body></a-entity> <!--pared lateral dere-->  
-        <a-entity geometry="primitive:box; width:22; height:12; depth:0.15" position="0 0.011 -17" rotation="-90 0 0"  color="gray"  static-body></a-entity>
+        <!--techos universal-->
+        <a-assets>
+            <a-assets-item id="techo" src="assets/modelos3D/quit.glb"> </a-assets-item>
+        </a-assets>
+        <a-entity gltf-model="#techo" position="0 5.4 -25.3"></a-entity>
+        <a-entity gltf-model="#techo" position="0.47 5.4 -27.405" rotation="0 -90 0"></a-entity>
+        <a-entity gltf-model="#techo" position="-0.504 5.4 -27.491" rotation="0 90 0" ></a-entity>
+        <a-entity gltf-model="#techo" position="0 5.4 -26.45" rotation="0 -180 0"></a-entity>
+        
+        <!--sala de obra personal-->
+        
+        <a-entity geometry="depth: 0.15; height: 8; width: 8" position="4 1 -26.6156" rotation="0 -90 0" material="color: gray"> </a-entity><!--pared lateral de lobby 1 (derecha)-->
+        <a-entity geometry="depth: 0.15; height: 8; width: 8" position="-4 1 -26.55329" rotation="0 -90 0" material="color: gray"> </a-entity><!--pared lateral de lobby 2 (izquierda)-->
+        <a-entity geometry="depth: 0.15; height: 8; width: 8" position="0 1 -22.60386" rotation="0 -180 0" material="color: gray"> </a-entity><!--pared trasera de lobby 2 (atras)-->
+        <a-entity geometry="depth: 0.15; height: 8; width: 3" position="-2.5 1 -30.52183" rotation="0 -180 0" material="color: gray"> </a-entity> <!--puerta 1 (izq)-->
+        <a-entity geometry="depth: 0.15; height: 8; width: 3" position="2.5 1 -30.5746" rotation="0 -180 0" material="color: gray"> </a-entity>/<!--puerta 2 (der)-->
+        <a-entity geometry="depth: 0.15; height: 2.5; width: 3" position="0 3.75 -30.57614" rotation="0 -180 0" material="color: gray"></a-entity>
+
+
+        
+        
+        <!--textos de curaduria incial-->
+
+        <a-entity geometry="primitive: box; depth: 0.15; height: 8; width: 2" position="-3.16929 0 -3.067" rotation="0 45 0" material="shader: flat; color: white"></a-entity>
+        <a-entity geometry="primitive: box; depth: 0.15; height: 8; width: 2" position="3.16929 0 -3.067" rotation="0 -45 0" material="shader: flat; color: white"></a-entity>
+        <a-entity text="value: CLAMOR SOCIAL\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width:5 " scale="2 2 6" position="3.5 4 -5.49" ></a-entity>
+        <!--a-entity text="value: Teresa Margolles\n Regina Jose Galindo\n Gabriela Golden\n Daniel Brittany Chavez\n; font:assets/custom3-msdf.json; fontImage:assets/custom3.png; negate:false ; color:black; width:2" scale="2 2 1 " position="2 3.5 -3.8"></a-entity-->    
+        <a-entity geometry="primitive: box; width:4; height:1.5; depth:0.05;" position="0 3.8 -5.58" material="color:black"></a-entity>
+        <a-entity text="value:La violencia deja huellas\n que no se borran. Estas\n obras son un  reflejo de \n esas marcas, de lo que\n queda cuando el dolor se\n convierte en memoria.\n Aquí, la violencia no es\n solo un recuerdo, sino una \npresencia que sigue\n marcando nuestras vidas.\n A través de la resistencia,\n se reconstruye esa memoria,\n se enfrenta y se hace\n visible lo que muchos \nintentan ocultar. \n \nEsta curaduría nos invita \na revivir esas historias,\n a reconocer lo que la\n memoria guarda,\n para seguir luchando. ; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width:1.5 ;" scale="2 2 1" position="-2.6 2.2 -3.4" rotation="0 45 0"></a-entity>
+        <a-entity text="value: Al apelar a la memoria\n colectiva no solo\npreservamos lo vivido, sino\n que también construimos\n un futuro donde las voces\n silenciadas no se olviden.\n Fortalecemos el compromiso \ncon la rememorización y\n la resistencia, asegurando\n que las heridas del pasado\n no se repitan y que todos \ntengamos un papel en la\n memoria compartida de \nestas vivencias dolorosas.;font:assets/fuente-msdf/fuente-msdf.json; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width: 1.5 " scale="2 2 1" position="3.5 2.25 -2.5" rotation="0 -45 0"></a-entity>
+        
+        <!--pasillo 1-->
+        
+
+        <!--cuarto trasero (3)-->
+        <a-entity geometry="primitive: box; width:22 ; height:12; depth: 0.15;" position="0 0.011 -46.40"  material="color:gray"> </a-entity> <!--pared de cuarto 1 (trasera)-->
+        <a-entity geometry="depth: 0.15; height: 12; width: 2.95" position="-5.78898 0.00402 -37.19632" rotation="0 -59.99999999999999 0" material="color: gray"> </a-entity> <!--pared izq 1-->
+
+        <a-entity geometry="primitive: box; width:12 ; height:12; depth:0.15;" position="7.9 0.011 -41.07" rotation="0 60 0" material="color:gray"></a-entity> <!--pared lateral dere-->  
+        <a-entity geometry="primitive:box; width:22; height:12; depth:0.15" position="0 0.011 -41.965" rotation="-90 0 0"  material="color:yellow; shader:flat"></a-entity>
+        <a-entity geometry="primitive: box; width:10; height:12; depth: 0.15;" position="0 0 -35.931" rotation="0 -180 0" material="color:gray"> </a-entity> <!--pared principal 2-->
         <!--textos cuarto 1-->
         <a-entity text="value: EN EL AIRE\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:black; width: 6 " scale="2 2 1 " position="0 3.5 -21.4"  ></a-entity>
         <a-entity text="value: Teresa Margolles\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width:5 " scale="2 2 1 " position="0 3.1 -21.4"  ></a-entity>
+        
         <!--experimentacion burbujas-->
         <!--a-entity geometry="primitive: box; " material="color:pink" position=" -2 0.5 -3" animation="property: object3D.position.y; to: 1.2; dir: alternate; dur: 1000; loop: true" ></a-entity-->
-        <a-entity geometry="primitive: sphere; height:0.2 ; width:0.2;" radius="0.2" material="color:lightblue" position="0 3 -20.5" animation="property:object3D.position.y; to: 1.2; dir: alternate; dur: 1000; loop: true "> </a-entity>
+        <a-entity geometry="primitive: sphere; radius:0.2 " material="color:lightblue" position="0 3 -20.5" animation="property:object3D.position.y; to: 1.2; dir: alternate; dur: 1800; loop: true "> </a-entity>
+        <a-entity geometry="primitive: sphere; radius:0.2 " material="color:lightblue" position="1 1 -18.5" animation="property:object3D.position.y; to: 1.2; dir: alternate; dur: 1500; loop: true "> </a-entity>
+        <a-entity geometry="primitive: sphere; radius:0.2 " material="color:lightblue" position="0.5 .8 -13.5" animation="property:object3D.position.y; to: 1.2; dir: alternate; dur: 1500; loop: true "> </a-entity>
+        
 
         <!--cuarto 2-->
-        <a-entity geometry="primitive: box; width:22; height:12; depth:0.15;" position="21.5 0.011 0" rotation="0 90 0" material="color:gray" static-body></a-entity><!--pared (trasera)-->
-        <a-entity geometry="primitive:box; width:12; height:12; depth:0.15" position="16.2 0.011 7.9" rotation="0 150 0" material="color:gray" static-body></a-entity>
-        <a-entity geometry="primitive:box; width:12; height:12; depth:0.15" position="16.2 0.011 -7.9" rotation="0 -150 0" material="color:gray"></a-entity>
-        <a-entity geometry="primitive:box; width:16; height:24; depth:0.15" position="19 0.011 -1.2" rotation="-90 0 0"  color="white"  static-body></a-entity>
-        <!--textos cuarto 3-->
+        <a-entity geometry="primitive: box; width:22; height:12; depth:0.15;" position="21.5 0.011 -27.15" rotation="0 90 0" material="color:gray"></a-entity><!--pared (trasera)-->
+        <a-entity geometry="primitive:box; width:12; height:12; depth:0.15" position="16.2 0.011 -19.29" rotation="0 150 0" material="color:gray"></a-entity>
+        <a-entity geometry="primitive:box; width:12; height:12; depth:0.15" position="16.2 0.011 -35.156" rotation="0 -150 0" material="color:gray"></a-entity>
+        <a-entity geometry="primitive:box; width:16; height:24; depth:0.15" position="19. 0.011 -27.3" rotation="-90 0 0"  color="white"></a-entity>
+        <a-entity geometry="primitive: box; width:9.9; height:12; depth: 0.15;" position="11.01 0.011 -27.26 " rotation="0 90 0" material="color:gray"> </a-entity> <!--pared principal 2-->
+
         <!--textos cuarto 2-->
         <a-entity text="value: ¿Quien puede borrar las huellas?\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:black; width: 6 " scale="2 2 1 " position="21.3 4 -1" rotation="0 -90 0" ></a-entity>
         <a-entity text="value: Regina J. Galindo\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width:5 " scale="2 2 1 " position="21.3 3.5 0" rotation="0 -90 0" ></a-entity>
 
-        <!--cuarto 3-->
-        <a-entity geometry="primitive: box; width:22; height:12 ; depth:0.15" position="0 0.011 21.5" rotation="0 -180 0" material="color:gray" static-body></a-entity>
-        <a-entity geometry="primitive: box; width:12; height:12; depth:0.15" position="7.9 0.011 16.2" rotation="0 -60 0 " material="color:gray"  static-body></a-entity>
-        <a-entity geometry="primitive:box; width:12; height:12; depth:0.15" position="-7.9 0.011 16.2" rotation="0 60 0 " material="color:gray"  static-body></a-entity>
-        <a-entity geometry="primitive:box; width:21.5; height:12; depth:0.15" position="0 0.011 17" rotation="-90 0 0"  color="white"  static-body></a-entity>
+        <!--cuarto 1 RENOVADO-->
+        <!--a-entity geometry="primitive: box; width:22; height:12 ; depth:0.15" position="0 0.011 21.5" rotation="0 -180 0" material="color:gray"></a-entity-->
+        <a-entity geometry="primitive: box; depth: 0.15; height: 12; width: 10" position="-5.9 0.011 -5.65" rotation="0 -180 0" material="color:gray"></a-entity>
+        <a-entity geometry="primitive: box; depth: 0.15; height: 12; width: 10" position="6.04 0.011 -5.65" rotation="0 -180 0" material="color:gray"></a-entity>
+        <a-entity geometry="primitive: box; depth: 0.15; height: 3; width: 4" position="0 4.5 -5.65" rotation="0 -180 0" material="color:gray"></a-entity>
+        <a-entity geometry="depth: 0.15; height: 12; width: 5.4" position="-9.55704 0.02824 -8.05561" rotation="0 59.9 0" material="color: gray"></a-entity><!--pared izquierda1-->
+        <a-entity geometry="depth: 0.15; height: 12; width: 4.5" position="-6.0576 0.0101 -14.124" rotation="0 59.9 0" material="color: gray"></a-entity><!--pared izquierda2-->
+        <a-entity geometry="depth: 0.15; height: 3.4; width: 2.1" position="-7.69744 4.30386 -11.29194" rotation="0 59.9 0" material="color: gray"></a-entity>
+        <a-entity geometry="primitive: box; width:12; height:12; depth:0.15" position="7.9 0.011 -10.8" rotation="0 -60 0 " material="color:gray"></a-entity><!--pared derecha-->
+        <a-entity geometry="primitive: box; width:21.5; height:12; depth:0.15" position="0 0 -10.092" rotation="-90 0 0" material="color:white"></a-entity> <!--piso-->
+        <a-entity geometry="depth: 0.15; height: 12; width: 4" position="2.86469 0.011 -16.01826" rotation="0 -180 0" material="color: gray"> </a-entity> <!--pared principal 1-->
+        <a-entity geometry="depth: 0.15; height: 12; width: 4" position="-2.911 0.011 -16.02371" rotation="0 -180 0" material="color: gray"> </a-entity><!--pared principal 2-->
+        <a-entity geometry="depth: 0.15; height: 3.4; width: 1.8" position="-0.031 4.296 -16.019" rotation="0 -180 0" material="color: gray" scale="1 1.01 1"></a-entity><!--pared principal 3-->
+        <a-entity geometry="depth: 0.15; height: 6; width: 12.1" position="-12.07761 2.93513 -14.85403" rotation="0 -230 0" material="color: gray"> </a-entity>
+        <a-entity geometry="depth: 0.15; height: 6; width: 4" position="-8.43115 3.035 -13.75141" rotation="0 -230 0" material="color: gray"> </a-entity>
+        <a-entity geometry="depth: 0.15; height: 6; width: 10.8" position="-10.64982 3.035 -16.39162" rotation="0 -230 0" material="color: gray"> </a-entity>
         <!--textos cuarto 3-->
         <a-entity text="value: Los ojos desiertos\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:black; width: 6 " scale="2 2 1 " position="0 4 21.3" rotation="0 -180 0" ></a-entity>
         <a-entity text="value: Gabriela Golder\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width:5 " scale="2 2 1 " position="0 3.5 21.3" rotation="0 -180 0" ></a-entity>
 
         <!--cuarto 4-->
-        <a-entity geometry="primitive: box; width:22; height:12; depth:0.15" position="-21.5 0.011 0" rotation="0 -90 0" material="color:gray" static-body></a-entity>
-        <a-entity geometry="primitive: box; width:12; height:12; depth:0.15" position="-16.2 0.011 7.9" rotation="0 -150 0" material="color:gray" static-body></a-entity>
-        <a-entity geometry="primitive: box; width:12; height:12; depth:0.15" position="-16.2 0.011 -7.9" rotation="0 -30 0" material="color:gray" static-body></a-entity>
-        <a-entity geometry="primitive:box; width:11; height:22; depth:0.15" position="-16 0.011 0" rotation="-90 0 0"  color="white"  static-body></a-entity>
-        <!--textos cuarto 3-->
+        <a-entity geometry="primitive: box; width:22; height:12; depth:0.15" position="-21.5 0.011 -27.24" rotation="0 -90 0" material="color:gray"></a-entity>
+        <a-entity geometry="depth: 0.15; height: 12; width: 6.6" position="-18.737 0.002 -17.85478" rotation="0 -150 0" material="color: gray"></a-entity><!--pared derecha-->
+        <a-entity geometry="depth: 0.15; height: 12; width: 3.7" position="-12.57283 0.002 -21.41179" rotation="0 -150 0" material="color: gray"></a-entity><!--pared derecha 2-->
+        <a-entity geometry="depth: 0.15; height: 3.4; width: 2" position="-15.0348 4.304 -19.992" rotation="0 -150 0" material="color: gray"></a-entity>
+        <a-entity geometry="depth: 0.15; height: 12; width: 6.6" position="-18.50525 0.011 -36.53897" rotation="0 -29.999999999999996 0" material="color: gray"></a-entity><!--pared izquierda 1-->
+        <a-entity geometry="depth: 0.15; height: 12; width: 3.7" position="-12.61145 0.002 -33.06974" rotation="0 -29.999999999999996 0" material="color: gray"></a-entity><!--pared izquierda 2-->
+        <!--pared izquierda 3-->
+        <!--pasillo 1-->
+        <a-entity geometry="depth: 0.15; height: 6; width: 8.5" position="-13.00689 2.99513 -38.14313" rotation="0 230 0" material="color: gray"> </a-entity>
+        <!--pasillo 2-->
+        <a-entity geometry="depth: 0.15; height: 6; width: 8.84" position="-10.30857 2.995 -36.20643" rotation="0 210.00000000000003 0" material="color: gray"> </a-entity>
+        <!--techo pasillo-->
+        <a-entity geometry="primitive:box; width:11; height:22; depth:0.15" position="-11.028 0.011 -27.260" rotation="-90 0 0"  color="white"></a-entity>
+        <a-entity geometry="primitive: box; width:9.9; height:12; depth: 0.15;" position="-11. 0.011 -27.26" rotation="0 -90 0" material="color:gray"> </a-entity> <!--pared principal-->
         <!--textos cuarto 4-->
         <a-entity text="value:Quisieron enterrarnos, no sabian que eramos semillas\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:black; width: 6 " scale="2 2 1 " position="-21.3 4 0" rotation="0 90 0" ></a-entity>
-        <a-entity text="value: Daniel B. Chavez\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width:5 " scale="2 2 1 " position="-21.3 3.5 0" rotation="0 90 0" ></a-entity>
+        <a-entity text="value: Daniel B. Chavez\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width:5 " scale="2 2 1 " position="-21.3 3.2 0" rotation="0 90 0" ></a-entity>
 
-        <!--textos sala 1-->
-        <a-entity text="value: CLAMOR SOCIAL\n; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width:5 " scale="2 2 1 " position="3.5 4 -3.8"  ></a-entity>
-        <!--a-entity text="value: Teresa Margolles\n Regina Jose Galindo\n Gabriela Golden\n Daniel Brittany Chavez\n; font:assets/custom3-msdf.json; fontImage:assets/custom3.png; negate:false ; color:black; width:2" scale="2 2 1 " position="2 3.5 -3.8"></a-entity-->    
-        <a-entity geometry="primitive: box; width:4; height:1.5; depth:0.05;" position="0 3.8 -3.9" material="color:black"></a-entity>
-        <a-entity text="value:La violencia deja huellas que no se borran. Estas obras son un  reflejo de esas marcas,\n de lo que queda cuando el dolor se\n convierte en memoria. Aquí, la violencia no es solo un recuerdo, sino una presencia que sigue marcando nuestras vidas. A través de la resistencia, se reconstruye esa memoria,\n se enfrenta y se hace visible lo que muchos intentan ocultar. \n Esta curaduría nos invita a revivir esas historias, a reconocer lo que la memoria guarda,\n para seguir luchando. ; font:assets/fuente-msdf/fuente-msdf.json ; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width:1.5 " scale="2 2 1" position="3.8 3.5 -2" rotation="0 -90 0"></a-entity>
-        <a-entity text="value: Al apelar a la memoria colectiva no solo preservamos lo vivido, sino que también construimos un futuro donde las voces silenciadas no se olviden. Fortalecemos el compromiso con la rememorización y la resistencia, asegurando que las heridas del pasado no se repitan y que todos tengamos un papel en la memoria compartida de estas vivencias dolorosas.;font:assets/fuente-msdf/fuente-msdf.json; fontImage:assets/fuente-msdf/fuente.png; negate:false ; color:red; width: 1.5 " scale="2 2 1" position="3.8 2 -2" rotation="0 -90 0"></a-entity>
 
     </a-scene>
 
