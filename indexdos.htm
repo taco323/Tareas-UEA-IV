@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destellos de Inteligencia</title>
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+    <style>
+        #play-audio {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #play-audio:hover {
+            background-color: #357ABD;
+        }
+    </style>
+</head>
+<body>
+
+
+    <a-scene>
+        <a-assets>
+            <audio id="audioBosque" src="recursos/bosque.mp3"></audio>
+            <img id="texturaSuelo" src="recursos/glados.jpg">
+            <img id="texturaPared" src="recursos/pared.jpg">
+            <img id="texturaArteuno" src="recursos/arteuno.jpg">
+            <img id="texturaArtedos" src="recursos/artedos.jpg">
+            <img id="texturaArtetres" src="recursos/artetres.jpg">
+            <img id="texturaArtecuatro" src="recursos/artecuatro.jpg">
+        </a-assets>
+
+        <!-- Entorno -->
+        <a-entity environment="preset: forest; groundTexture: #texturaSuelo; skyType: gradient; skyColor: #2E2B5F"></a-entity>
+
+        <!-- Figuras geométricas convertidas a <a-entity> -->
+        <a-entity geometry="" position="-0.21911 0.48727 -3.51256" material="src:#texturaSuelo; color: #4A90E2"></a-entity>
+        <a-entity geometry="primitive: sphere" position="-5.19648 3.92833 0.02321" material="color: #FF7F50"></a-entity>
+        <a-entity geometry="primitive: sphere" position="4.56596 3.92833 0.02321" material="color: #FF7F50"></a-entity>
+        <a-entity geometry="primitive: cylinder; radius: 0.8; height: 4" position="-5.19365 1.56569 0.09116" material="color: #90EE90"></a-entity>
+        <a-entity geometry="primitive: cylinder; radius: 0.8; height: 4" position="4.57272 1.56569 0.09116" material="color: #90EE90"></a-entity>
+        <a-entity geometry="depth: 0.15; height: 8; width: 5" position="-4.07337 0 -1.77156" rotation="0 59.99999999999999 0" material="shader: flat; src:#texturaPared; color: wihte"></a-entity>
+        <a-entity geometry="depth: 0.15; height: 8; width: 5" position="3.43166 0 -1.78351" rotation="0 -59.99999999999999 0" material="shader: flat; src:#texturaPared; color: wihte"></a-entity>
+        <a-entity geometry="depth: 0.15; height: 8; width: 5" position="-0.32805 0 -4.00438" rotation="" material="shader: flat; src:#texturaPared; color: wihte"></a-entity>
+
+        <a-entity geometry="depth: 0.15; width: 1.5" position="3.56129 1.16724 -1.51136" rotation="0 -59.99999999999999 0" material="shader: flat; src: #texturaArtedos; color: wihte"></a-entity>
+        <a-entity geometry="depth: 0.15; width: 2" position="2.78782 2.80017 -2.88401" rotation="0 -59.99999999999999 0" material="shader: flat; src: #texturaArteuno; color: wihte"></a-entity>
+        <a-entity geometry="depth: 0.15; width: 1.5" position="-4.2059 2.5652 -1.53409" rotation="0 59.99999999999999 0" material="shader: flat; src: #texturaArtetres; color: wihte"></a-entity>
+        <a-entity geometry="depth: 0.15; width: 1.5" position="-3.46794 0.99393 -2.80339" rotation="0 59.99999999999999 0" material="shader: flat; src:#texturaArtecuatro ; color: wihte"></a-entity>
+        
+
+        <!-- Texto relacionado con el cuento -->
+        <a-text value="La tecnología es un\n reflejo de la creatividad\n y los sueños humanos.\n Observa a tu alrededor\n para comprobarlo" ;="" font="recursos/abc-msdf/abc-msdf.json" fontimage="recursos/abc-msdf/abc.png" negate="false" color="black" letterspacing="4" scale="2 2 1" position="-2.59221 2.12295 -3.89463" text=""></a-text>
+      
+        <!-- Cámara y cursor -->
+        <a-camera position="0 1.6 0">
+            <a-cursor color="#FFFFFF"></a-cursor>
+        </a-camera>
+
+        <!-- Audio -->
+        <a-entity id="prueba" position="0 0 0" sound="src: #audioBosque; autoplay: true; volume:1; positional:false" ></a-entity>
+
+    </a-scene>
+    </script>
+</body>
+</html>
